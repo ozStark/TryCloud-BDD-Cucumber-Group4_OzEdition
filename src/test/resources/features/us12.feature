@@ -6,13 +6,13 @@ Feature: As a user, I should be able to access to Contacts module.
     When user clicks on Contacts module
 
 
-  @ac1
+  @us12
   Scenario: AC#1 - verify users can access to Talks module
 
     Then user verifies the page title is Contents module's title
 
 
-  @ac2
+  @us12
   Scenario: AC#2 - verify user can add contacts
 
     And user clicks on New Contact button
