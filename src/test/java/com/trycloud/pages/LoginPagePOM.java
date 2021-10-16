@@ -18,6 +18,9 @@ public class LoginPagePOM {
     @FindBy(id = "submit-form")
     private WebElement loginBtn;
 
+    @FindBy(xpath = "//p[@class='warning wrongPasswordMsg']")
+    private WebElement wrongPassMsg;
+
 
 
     public LoginPagePOM(){
@@ -37,11 +40,16 @@ public class LoginPagePOM {
         this.loginBtn.click();
     }
 
+
+
     public void isAtLoginPage(){
         String homePage = "http://qa2.trycloud.net/index.php/apps/dashboard/";
 
         Assert.assertEquals(homePage,Driver.getDriver().getCurrentUrl());
     }
 
+    public void wrongPassErrorMsgIsDisplayed(){
+        Assert.assertTrue(this.wrongPassMsg.isDisplayed());
+    }
 
 }

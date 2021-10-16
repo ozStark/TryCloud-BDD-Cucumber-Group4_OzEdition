@@ -15,7 +15,7 @@ public class Hooks {
     // methods that run before each scenario and after each scenario
     // or even when we learn tags
     // we can run certain code before and after each scenario that tagged with certain tag
-    @Before("@ui")
+    @Before("@test")
     public void setupDriver(){
         System.out.println("THIS IS FROM @Before inside hooks class");
         // set up implicit wait or all the browser related set up
@@ -24,7 +24,7 @@ public class Hooks {
         Driver.getDriver().manage().window().maximize();
     }
 
-    @After("@ui")
+    @After("@test")
     public void tearDown(Scenario scenario){
 
         // check if scenario failed or not

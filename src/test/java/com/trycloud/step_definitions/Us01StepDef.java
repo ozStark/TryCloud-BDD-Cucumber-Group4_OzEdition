@@ -44,5 +44,16 @@ public class Us01StepDef {
     }
 
 
+    @When("user enter invalid credentials")
+    public void userEnterInvalidCredentials() {
+        loginPage.fillCredentials("wronguser","wrongpassword");
+    }
 
+
+
+    @Then("“Wrong username or password.” message should be displayed")
+    public void wrongUsernameOrPasswordMessageShouldBeDisplayed() {
+        BrowserUtil.waitFor(2);
+        loginPage.wrongPassErrorMsgIsDisplayed();
+    }
 }
