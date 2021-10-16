@@ -2,6 +2,7 @@ package com.trycloud.step_definitions;
 
 import com.trycloud.pages.CommonPOM;
 import com.trycloud.pages.LoginPagePOM;
+import com.trycloud.utilities.BrowserUtil;
 import com.trycloud.utilities.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -38,6 +39,8 @@ public class Us01StepDef {
     @Then("TEST user logs out")
     public void testUserLogsOut() {
         common.logOut();
+        //BrowserUtil.waitFor(4);
+
     }
 
 

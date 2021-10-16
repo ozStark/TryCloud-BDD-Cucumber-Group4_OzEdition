@@ -1,9 +1,8 @@
+@test
 Feature: As a user, I should be able to login
 
-  #Background:
-   # Given user is on the login page
 
-  #Not done yet. Need to add some wait conditions but the Scenario outline does appear to be working
+
   Scenario Outline:
     Given user is on the login page
     When user enter valid "<username>" and "<password>"
