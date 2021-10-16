@@ -40,7 +40,11 @@ public class LoginPagePOM {
         this.loginBtn.click();
     }
 
-
+    public void login(){// this method only for 1 user
+        goTo();
+        fillCredentials(ConfigReader.read("user0"),ConfigReader.read("password"));
+        clickLogin();
+    }
 
     public void isAtLoginPage(){
         String homePage = "http://qa2.trycloud.net/index.php/apps/dashboard/";
