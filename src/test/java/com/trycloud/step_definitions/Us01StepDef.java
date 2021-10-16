@@ -1,5 +1,6 @@
 package com.trycloud.step_definitions;
 
+import com.trycloud.pages.CommonPOM;
 import com.trycloud.pages.LoginPagePOM;
 import com.trycloud.utilities.ConfigReader;
 import io.cucumber.java.en.And;
@@ -12,6 +13,7 @@ import java.util.List;
 public class Us01StepDef {
 
     LoginPagePOM loginPage = new LoginPagePOM();
+    CommonPOM common = new CommonPOM();
 
     @Given("user is on the login page")
     public void user_is_on_the_login_page() {
@@ -35,7 +37,7 @@ public class Us01StepDef {
 
     @Then("TEST user logs out")
     public void testUserLogsOut() {
-        loginPage.logOut();
+        common.logOut();
     }
 
 
