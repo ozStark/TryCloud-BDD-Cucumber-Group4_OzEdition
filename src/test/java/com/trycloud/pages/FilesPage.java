@@ -17,5 +17,21 @@ public class FilesPage {
         filesBtn.click();
     }
 
+    @FindBy(xpath = "//tr[@data-file='Talk']//span[.='Actions']/..")  // need change to dynamic according to file's name
+    WebElement actionIcon;
+
+    @FindBy(xpath = "//tr[@data-file='Talk']//span[.='Favorited']/..") //need change to dynamic according to file's name
+    WebElement favoritedIcon;
+
+    @FindBy(xpath = "//li[@class='action-0']")
+    WebElement addToFavorite;
+
+    @FindBy(xpath = "//li[@class=' action-favorite-container']")
+    WebElement removeFromFavorite;
+
     
+
+
+
+
 }
