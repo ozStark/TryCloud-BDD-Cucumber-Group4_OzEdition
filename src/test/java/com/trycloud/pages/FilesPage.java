@@ -42,10 +42,29 @@ public class FilesPage {
     @FindBy(xpath = "//li[@class=' action-favorite-container']")
     WebElement removeFromFavorite;
 
+  
+    @FindBy(xpath = "//span[.='New']")
+    public WebElement createNewFolderBtn;
+
+    @FindBy(xpath = "//span[.='New folder']")
+    public WebElement newFolder;
+
+    @FindBy(id = "view13-input-folder")
+    public WebElement newFolderInputNameBox;
+
+    @FindBy(xpath = "(//input[@type='submit'])[2]")
+    public WebElement newFolderInputNameSubmitBtn;
+
+    @FindBy(xpath = "(//div[@style='background-image: url(\"/index.php/apps/theming/img/core/filetypes/folder.svg?v=0\");'])[3]")
+    public WebElement newFolderCreatedImg;
+
+    @FindBy(xpath = "//div[@class='activitysubject']")
+    public WebElement youCreatedNewFolderConfirmMsg;
+
     @FindBy(xpath = "//tbody[@id='fileList']/tr")
     List<WebElement> fileList;
 
-
+  
     public void filesList(){
         for (WebElement eachFile : fileList) {
             System.out.println(eachFile.getText());
