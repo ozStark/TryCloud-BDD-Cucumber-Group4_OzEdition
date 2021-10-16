@@ -18,11 +18,7 @@ public class LoginPagePOM {
     @FindBy(id = "submit-form")
     private WebElement loginBtn;
 
-    @FindBy(xpath = "//div[@class='avatardiv avatardiv-shown']")
-    private WebElement logoutDrop;
 
-    @FindBy(xpath = "//li[@ data-id='logout']")
-    private WebElement logoutBtn;
 
     public LoginPagePOM(){
         PageFactory.initElements(Driver.getDriver(),this);
@@ -47,9 +43,5 @@ public class LoginPagePOM {
         Assert.assertEquals(homePage,Driver.getDriver().getCurrentUrl());
     }
 
-    public void logOut(){
-        this.logoutDrop.click();
-        this.loginBtn.click();
-    }
 
 }
