@@ -12,6 +12,7 @@ public class Us05StepDef {
     public void login_as_a_user() {
     new LoginPagePOM().login();
     }
+
     @When("Click action-icon from any file on the page")
     public void click_action_icon_from_any_file_on_the_page() {
     filesPage.clickFilesBtn();
@@ -25,10 +26,7 @@ public class Us05StepDef {
 
     }
 
-    @When("Click the “+” icon on top")
-    public void click_the_icon_on_top() {
 
-    }
     @When("Click “upload file”")
     public void click_upload_file() {
 
