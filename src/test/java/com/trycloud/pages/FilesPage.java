@@ -15,8 +15,8 @@ public class FilesPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(xpath = "//span[normalize-space(.)='Files']")
-    WebElement filesBtn;
+    @FindBy(xpath = "//span[normalize-space(.)='Files']/..")
+    public WebElement filesBtn;
 
     public void clickFilesBtn(){
         filesBtn.click();
