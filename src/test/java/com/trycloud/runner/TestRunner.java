@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
                 "me.jvt.cucumber.report.PrettyReports:target"  // fancy report
         } ,
         dryRun = true
-                   , tags = "@wip"
+                   , tags = "@us6"
 )
 public class TestRunner {
 }
