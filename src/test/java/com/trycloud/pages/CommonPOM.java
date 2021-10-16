@@ -23,7 +23,7 @@ public class CommonPOM {
     public void logOut(){
         this.logoutDrop.click();
         BrowserUtil.waitForVisibility(By.xpath("//li[@ data-id='logout']"),3);
-        this.logoutBtn.click();
+        this.logoutBtn.click();//
     }
 
 }
