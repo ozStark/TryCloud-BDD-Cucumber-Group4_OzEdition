@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilesPage {
@@ -16,7 +17,11 @@ public class FilesPage {
     }
 
     @FindBy(xpath = "//span[normalize-space(.)='Files']/..")
+
     public WebElement filesBtn;
+
+    WebElement filesBtn;
+
 
     public void clickFilesBtn(){
         filesBtn.click();
@@ -25,8 +30,8 @@ public class FilesPage {
     @FindBy(xpath = "//tr[@data-file='Talk']//span[.='Actions']/..")  // need change to dynamic according to file's name
     WebElement actionIcon;
 
-    @FindBy(xpath = "//tr[@data-file='Talk']//span[.='Favorited']/..") //need change to dynamic according to file's name
-    WebElement favoritedIcon;
+//    @FindBy(xpath = "//tr[@data-file='Talk']//span[.='Favorited']/..") //need change to dynamic according to file's name
+//    WebElement favoritedIcon;
 
     public boolean isFavoriteFile(String fileName){
         String sXpath="//tr[@data-file='"+fileName+"]//span[.='Favorited']/..";
@@ -64,12 +69,22 @@ public class FilesPage {
     @FindBy(xpath = "//tbody[@id='fileList']/tr")
     List<WebElement> fileList;
 
-  
-    public void filesList(){
+
+// make sure there is at least one file marked with Favorite
+    public boolean isAtLeastOneFileAsFavorite(){
+        int count=0;
         for (WebElement eachFile : fileList) {
-            System.out.println(eachFile.getText());
+            String fileName = eachFile.getText();
+            if (isFavoriteFile(fileName))
+                count +=1;
+        }
+        if (count>=1){
+            return true;
+        }else {
+            return false;
         }
     }
+
 
     @FindBy(xpath = "//span[.='Upload file']")
     public WebElement uploadFile;
@@ -77,6 +92,42 @@ public class FilesPage {
     public void selectFromCreateFolderBtn(String options){
 
         Driver.getDriver().findElement(By.xpath("//span[.='"+options+"']")).click();
+    }
+
+   public WebElement delectedElement;
+
+    public boolean clickRemoveFromFavorite(){//issue method, need modify
+        WebElement result;
+        for (WebElement eachFile : fileList) {
+            String fileName = eachFile.getText();
+            if (isFavoriteFile(fileName)){
+                String fileNameXpath="//tr[@data-file='"+fileName+"']//span[.='Actions']/..";
+                Driver.getDriver().findElement(By.xpath(fileNameXpath)).click();
+                removeFromFavorite.click();
+                break;
+            }
+
+        }
+        return false;
+    }
+
+    @FindBy(xpath = "//a[.='Favorites']")
+    WebElement favoriteTab;
+
+    public void clickFavoriteTab(){
+        favoriteTab.click();
+    }
+
+    public boolean checkIsSameFileInFavoriteList(){
+
+        List<String > fileNameList = new ArrayList<>();
+        for (WebElement each : fileList) {
+            String fileNameInFavorite = each.getText();
+            fileNameList.add(fileNameInFavorite);
+        }
+        String deleteFileName = delectedElement.getText();
+        return fileNameList.contains(deleteFileName);
+
 
     }
 
