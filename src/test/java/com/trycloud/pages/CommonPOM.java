@@ -53,6 +53,9 @@ public class CommonPOM {
     @FindBy(xpath = "//li[@data-id='contacts']/a")
     private WebElement contactsBtn;
 
+    @FindBy(xpath = "//li[@data-id='circles']/a")
+    private WebElement circlesBtn;
+
     @FindBy(xpath = "//span[text()='Contacts']")
     private WebElement textContactBtn;
 
@@ -80,33 +83,43 @@ public class CommonPOM {
     }
 
     public List<String> iterableModuleList(){
-        Actions action = new Actions(Driver.getDriver());
+        //Actions action = new Actions(Driver.getDriver());
         List<String> list = new ArrayList<>();
         //String str1 = this.textDashBoardBtn.getText();
 
-        action.moveToElement(this.dashBoardBtn).perform();
-        list.add(this.textDashBoardBtn.getText());
+        //action.moveToElement(this.dashBoardBtn).perform();
+        //list.add(this.textDashBoardBtn.getText());
+        list.add(this.dashBoardBtn.getAttribute("href"));
 
-        action.moveToElement(this.filesBtn).perform();
-        list.add(this.textFilesBtn.getText());
+        //action.moveToElement(this.filesBtn).perform();
+        //list.add(this.textFilesBtn.getText());
+        list.add(this.filesBtn.getAttribute("href"));
 
-        action.moveToElement(this.photosBtn).perform();
-        list.add(this.textPhotosBtn.getText());
+        //action.moveToElement(this.photosBtn).perform();
+        //list.add(this.textPhotosBtn.getText());
+        list.add(this.photosBtn.getAttribute("href"));
 
-        action.moveToElement(this.activityBtn).perform();
-        list.add(this.textActivityBtn.getText());
+        //action.moveToElement(this.activityBtn).perform();
+        //list.add(this.textActivityBtn.getText());
+        list.add(this.activityBtn.getAttribute("href"));
 
-        action.moveToElement(this.talkBtn).perform();
-        list.add(this.textTalkBtn.getText());
+        //action.moveToElement(this.talkBtn).perform();
+        //list.add(this.textTalkBtn.getText());
+        list.add(this.talkBtn.getAttribute("href"));
 
-        action.moveToElement(this.contactsBtn).perform();
-        list.add(this.textContactBtn.getText());
+        //action.moveToElement(this.contactsBtn).perform();
+        //list.add(this.textContactBtn.getText());
+        list.add(this.contactsBtn.getAttribute("href"));
 
-        action.moveToElement(this.calendarBtn).perform();
-        list.add(this.textCalendarBtn.getText());
+        list.add(this.circlesBtn.getAttribute("href"));
 
-        action.moveToElement(this.deckBtn).perform();
-        list.add(this.textDeckBtn.getText());
+        //action.moveToElement(this.calendarBtn).perform();
+        //list.add(this.textCalendarBtn.getText());
+        list.add(this.calendarBtn.getAttribute("href"));
+
+        //action.moveToElement(this.deckBtn).perform();
+        //list.add(this.textDeckBtn.getText());
+        list.add(this.deckBtn.getAttribute("href"));
 
         return list;
 
@@ -129,4 +142,6 @@ public class CommonPOM {
         }
 return result;
     }
+
+
 }
