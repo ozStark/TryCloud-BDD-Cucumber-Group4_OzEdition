@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilesPage {
@@ -80,19 +81,22 @@ public class FilesPage {
         }
     }
 
-    public void clickRemoveFromFavorite(){
 
-  
-    public void filesList(){
+   public WebElement delectedElement;
 
+    public boolean clickRemoveFromFavorite(){//issue method, need modify
+        WebElement result;
         for (WebElement eachFile : fileList) {
             String fileName = eachFile.getText();
             if (isFavoriteFile(fileName)){
                 String fileNameXpath="//tr[@data-file='"+fileName+"']//span[.='Actions']/..";
                 Driver.getDriver().findElement(By.xpath(fileNameXpath)).click();
                 removeFromFavorite.click();
+                break;
             }
+
         }
+        return false;
     }
 
     @FindBy(xpath = "//a[.='Favorites']")
@@ -102,7 +106,15 @@ public class FilesPage {
         favoriteTab.click();
     }
 
-    public void checkHasSameFileInFavoriteList(){
+    public boolean checkIsSameFileInFavoriteList(){
+
+        List<String > fileNameList = new ArrayList<>();
+        for (WebElement each : fileList) {
+            String fileNameInFavorite = each.getText();
+            fileNameList.add(fileNameInFavorite);
+        }
+        String deleteFileName = delectedElement.getText();
+        return fileNameList.contains(deleteFileName);
 
     }
 
