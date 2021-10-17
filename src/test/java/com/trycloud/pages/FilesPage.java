@@ -43,7 +43,7 @@ public class FilesPage {
     WebElement removeFromFavorite;
 
   
-    @FindBy(xpath = "//span[.='New']")
+    @FindBy(xpath = "//span[@class='icon icon-add']")
     public WebElement createNewFolderBtn;
 
     @FindBy(xpath = "//span[.='New folder']")
@@ -70,7 +70,15 @@ public class FilesPage {
             System.out.println(eachFile.getText());
         }
     }
-  
+
+    @FindBy(xpath = "//span[.='Upload file']")
+    public WebElement uploadFile;
+
+    public void selectFromCreateFolderBtn(String options){
+
+        Driver.getDriver().findElement(By.xpath("//span[.='"+options+"']")).click();
+
+    }
 
 
 
