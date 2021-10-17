@@ -33,6 +33,10 @@ public class Us05StepDef {
     assertFalse(filesPage.checkIsSameFileInFavoriteList());
     }
 
+
+
+
+
     @When("Click “upload file”")
     public void click_upload_file() {
 
@@ -47,5 +51,6 @@ public class Us05StepDef {
     public void verify_the_file_is_displayed_on_the_page() {
 
     }
+
 
 }

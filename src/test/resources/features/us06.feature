@@ -1,10 +1,9 @@
 Feature: Story: As a user, I should be able to access to Files module.
 
-    @us6
     Scenario: verify users can create a folder
-
-Given Login as a user
-When Click the “+” icon on top
+        Given Login as a user
+        When Choose a folder from the page
+        When Click the “+” icon on top
 And Click “New Folder”
 Then Write a folder name
 Then Click submit icon

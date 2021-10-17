@@ -17,7 +17,11 @@ public class FilesPage {
     }
 
     @FindBy(xpath = "//span[normalize-space(.)='Files']/..")
+
+    public WebElement filesBtn;
+
     WebElement filesBtn;
+
 
     public void clickFilesBtn(){
         filesBtn.click();
@@ -44,7 +48,7 @@ public class FilesPage {
     WebElement removeFromFavorite;
 
   
-    @FindBy(xpath = "//span[.='New']")
+    @FindBy(xpath = "//span[@class='icon icon-add']")
     public WebElement createNewFolderBtn;
 
     @FindBy(xpath = "//span[.='New folder']")
@@ -82,6 +86,14 @@ public class FilesPage {
     }
 
 
+    @FindBy(xpath = "//span[.='Upload file']")
+    public WebElement uploadFile;
+
+    public void selectFromCreateFolderBtn(String options){
+
+        Driver.getDriver().findElement(By.xpath("//span[.='"+options+"']")).click();
+    }
+
    public WebElement delectedElement;
 
     public boolean clickRemoveFromFavorite(){//issue method, need modify
@@ -115,6 +127,7 @@ public class FilesPage {
         }
         String deleteFileName = delectedElement.getText();
         return fileNameList.contains(deleteFileName);
+
 
     }
 
