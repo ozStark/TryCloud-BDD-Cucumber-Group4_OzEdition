@@ -143,5 +143,8 @@ public class CommonPOM {
 return result;
     }
 
+    public void clickContact(){
+        this.contactsBtn.click();
+    }
 
 }

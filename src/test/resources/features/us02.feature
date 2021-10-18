@@ -4,6 +4,7 @@
     # all except for talk which href value washttp://qa2.trycloud.net/index.php/apps/spreed/
     #whereas if the link was formatted like the others, being consistent with their link text
     # and link value it would have been http://qa2.trycloud.net/index.php/apps/talk/
+  @test@ui
   Feature: As a user, I should be access all the main modules of the app.
 
     Scenario Outline: Verify modules
@@ -29,6 +30,7 @@
         | User3    | Userpass123 |
         | User33   | Userpass123 |
         | User63   | Userpass123 |
+        | User93   | Userpass123 |
 
 
 
