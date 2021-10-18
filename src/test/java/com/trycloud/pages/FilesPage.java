@@ -20,7 +20,7 @@ public class FilesPage {
 
     public WebElement filesBtn;
 
-    WebElement filesBtn;
+    //WebElement filesBtn;
 
 
     public void clickFilesBtn(){
