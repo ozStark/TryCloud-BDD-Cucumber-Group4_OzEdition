@@ -30,7 +30,6 @@ import org.junit.runner.RunWith;
        
 
         dryRun = false
-                   , tags = "@wang"
 
 )
 public class TestRunner {
