@@ -8,7 +8,6 @@ import io.cucumber.java.en.When;
 
 import static org.junit.Assert.*;
 
-
 public class Us05StepDef {
     FilesPage filesPage = new FilesPage();
 
@@ -32,12 +31,4 @@ public class Us05StepDef {
     filesPage.clickFavoriteTab();
             assertFalse(filesPage.checkIsSameFileInFavoriteList());
     }
-
-
-
-
-
-
-
-
 }
