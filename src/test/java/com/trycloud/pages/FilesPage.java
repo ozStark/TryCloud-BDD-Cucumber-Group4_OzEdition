@@ -16,8 +16,11 @@ public class FilesPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
+
     @FindBy(xpath = "//span[normalize-space(.)='Files']/../..")
     WebElement filesBtn;
+
+    
 
     public void clickFilesBtn(){
         filesBtn.click();
@@ -48,7 +51,7 @@ public class FilesPage {
     WebElement removeFromFavorite;
 
   
-    @FindBy(xpath = "//span[.='New']")
+    @FindBy(xpath = "//span[@class='icon icon-add']")
     public WebElement createNewFolderBtn;
 
     @FindBy(xpath = "//span[.='New folder']")
@@ -79,6 +82,7 @@ public class FilesPage {
         for (WebElement eachFile : allFilesList) {
             BrowserUtil.waitFor(3);
             fileName = eachFile.getAttribute("data-file");
+
             if (isFavoriteFile(fileName)){
 
                 removedFileName=fileName;
@@ -105,6 +109,7 @@ public class FilesPage {
         BrowserUtil.waitFor(3);
         System.out.println("Favorite list: "+favoriteList());
         return favoriteList().contains(removedFileName);
+
 
     }
 
