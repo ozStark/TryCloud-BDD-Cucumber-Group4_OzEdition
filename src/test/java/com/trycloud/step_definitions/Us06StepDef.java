@@ -114,7 +114,7 @@ public class Us06StepDef {
         robot.keyRelease(KeyEvent.VK_SHIFT);
         robot.keyRelease(KeyEvent.VK_G);
 
-        //delete perious path
+        //delete previous path
         robot.keyPress(KeyEvent.VK_DELETE);
         robot.keyRelease(KeyEvent.VK_DELETE);
 
