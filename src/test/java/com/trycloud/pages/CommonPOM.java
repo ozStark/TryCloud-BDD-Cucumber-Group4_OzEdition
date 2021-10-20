@@ -1,5 +1,6 @@
 package com.trycloud.pages;
 
+import com.github.javafaker.Faker;
 import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import com.trycloud.utilities.BrowserUtil;
 import com.trycloud.utilities.Driver;
@@ -71,6 +72,9 @@ public class CommonPOM {
     @FindBy(xpath = "//span[text()='Calendar']")
     private WebElement textDeckBtn;
 
+    @FindBy(xpath = "//div[contains(@style, 'folder.svg')]")
+    public List<WebElement> foldersList;
+
 
     public CommonPOM() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -82,7 +86,7 @@ public class CommonPOM {
         this.logoutBtn.click();//
     }
 
-    public List<String> iterableModuleList(){
+    public List<String> iterableModuleList() {
         //Actions action = new Actions(Driver.getDriver());
         List<String> list = new ArrayList<>();
         //String str1 = this.textDashBoardBtn.getText();
@@ -125,26 +129,95 @@ public class CommonPOM {
 
     }
 
-    public boolean allModulesDisplayed(){
-        BrowserUtil.waitForVisibility(By.xpath("//li[@data-id='dashboard']/a"),5);
+    public boolean allModulesDisplayed() {
+        BrowserUtil.waitForVisibility(By.xpath("//li[@data-id='dashboard']/a"), 5);
         boolean result = false;
-        if(this.dashBoardBtn.isDisplayed()&&
-        this.filesBtn.isDisplayed()&&
-        this.photosBtn.isDisplayed()&&
-        this.activityBtn.isDisplayed()&&
-        this.talkBtn.isDisplayed()&&
-        this.contactsBtn.isDisplayed()&&
-        this.contactsBtn.isDisplayed()&&
-        this.deckBtn.isDisplayed()){
+        if (this.dashBoardBtn.isDisplayed() &&
+                this.filesBtn.isDisplayed() &&
+                this.photosBtn.isDisplayed() &&
+                this.activityBtn.isDisplayed() &&
+                this.talkBtn.isDisplayed() &&
+                this.contactsBtn.isDisplayed() &&
+                this.contactsBtn.isDisplayed() &&
+                this.deckBtn.isDisplayed()) {
             result = true;
-        }else {
+        } else {
             result = false;
         }
-return result;
+        return result;
     }
 
-    public void clickContact(){
+    public void clickContact() {
         this.contactsBtn.click();
     }
+
+    /**
+     * Common navigation bar module select
+     * @param moduleName
+     */
+    public void clickModule(String moduleName) {
+
+        switch (moduleName) {
+            case "Dashboard":
+                dashBoardBtn.click();
+                break;
+            case "Files":
+                filesBtn.click();
+                break;
+            case "Photos":
+                photosBtn.click();
+                break;
+            case "Activity":
+                activityBtn.click();
+                break;
+            case "Talk":
+                talkBtn.click();
+                break;
+            case "Contacts":
+                contactsBtn.click();
+                break;
+            case "Circles":
+                circlesBtn.click();
+                break;
+            case "Calendar":
+                calendarBtn.click();
+                break;
+            case "Deck":
+                deckBtn.click();
+                break;
+            default:
+                System.out.println("Invalid module name.");
+        }
+    }
+
+
+    public void clickAnyRandomFolder() {
+        int filesListSize = foldersList.size();
+        Faker faker = new Faker();
+        int random = faker.number().numberBetween(0,filesListSize-1);
+        foldersList.get(random).click();
+    }
+
+
+
+
+    public static void main(String[] args) {
+        Faker faker = new Faker();
+        LoginPagePOM loginPagePOM = new LoginPagePOM();
+        loginPagePOM.goTo();
+        loginPagePOM.fillCredentials("user63", "Userpass123");
+        loginPagePOM.clickLogin();
+        BrowserUtil.waitFor(1);
+        CommonPOM commonPOM = new CommonPOM();
+        commonPOM.clickAnyRandomFolder();
+        BrowserUtil.waitFor(2);
+        FilesPage filesPage = new FilesPage();
+        filesPage.createNewTextDocument(faker.name().firstName());
+        BrowserUtil.waitFor(5);
+        filesPage.clickRandomActionBtn();
+        BrowserUtil.waitFor(2);
+        Driver.getDriver().quit();
+    }
+
 
 }
