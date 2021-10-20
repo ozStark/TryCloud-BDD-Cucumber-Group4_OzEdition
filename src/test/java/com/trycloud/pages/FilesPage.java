@@ -39,34 +39,33 @@ public class FilesPage {
     public WebElement actionIcon;
 
 
+    //    public boolean isFavoriteFile(String fileName) {
+//        String sXpath = "//tr[@data-file='" + fileName + "]//span[.='Favorited']/..";
+//        if (Driver.getDriver().findElement(By.xpath(sXpath)).getText().equals("Favorited")) {
+//            return true;
+//        }
+//    }
     public boolean isFavoriteFile(String fileName) {
-        String sXpath = "//tr[@data-file='" + fileName + "]//span[.='Favorited']/..";
-        if (Driver.getDriver().findElement(By.xpath(sXpath)).getText().equals("Favorited")) {
-            return true;
-
-    public boolean isFavoriteFile(String fileName){
-        boolean result= true;
-        try{
-            String sXpath="//tr[@data-file='"+fileName+"']//span[.='Favorited']";
+        boolean result = true;
+        try {
+            String sXpath = "//tr[@data-file='" + fileName + "']//span[.='Favorited']";
             Driver.getDriver().findElement(By.xpath(sXpath)).getText().equals("Favorited");
-        }catch (Exception e){
-            result=false;
+        } catch (Exception e) {
+            result = false;
 
         }
         return result;
     }
 
+
     @FindBy(xpath = "//li[@class='action-0']")
     public WebElement addToFavorite;
 
     @FindBy(xpath = "//li[@class=' action-favorite-container']")
-
     WebElement removeFromFavorite;
 
+    //public WebElement removeFromFavorite;
 
-
-    public WebElement removeFromFavorite;
-  
 
     @FindBy(xpath = "//span[@class='icon icon-add']")
     public WebElement createNewFolderBtn;
@@ -104,10 +103,11 @@ public class FilesPage {
         } else {
             return false;
         }
+    }
 
     List<WebElement> allFilesList;
 
-    public void refreshCurrentPage(){
+    public void refreshCurrentPage() {
         filesBtn.sendKeys(Keys.F5);
 
     }
@@ -126,22 +126,26 @@ public class FilesPage {
 
     public WebElement delectedElement;
 
-    public boolean clickRemoveFromFavorite() {//issue method, need modify
-        WebElement result;
-        for (WebElement eachFile : fileList) {
-            String fileName = eachFile.getText();
-            if (isFavoriteFile(fileName)) {
-                String fileNameXpath = "//tr[@data-file='" + fileName + "']//span[.='Actions']/..";
+//    public boolean clickRemoveFromFavorite() {//issue method, need modify
+//        WebElement result;
+//        for (WebElement eachFile : fileList) {
+//            String fileName = eachFile.getText();
+//            if (isFavoriteFile(fileName)) {
+//                String fileNameXpath = "//tr[@data-file='" + fileName + "']//span[.='Actions']/..";
+//            }
+//        }
+//    }
 
-    public List<String> allFilesList1(){
-        List<String> list= new ArrayList<>();
+    public List<String> allFilesList1() {
+        List<String> list = new ArrayList<>();
         for (WebElement each : allFilesList) {
-           list.add( each.getAttribute("data-file"));
+            list.add(each.getAttribute("data-file"));
         }
         return list;
     }
 
     public static String removedFileName;
+    /*
     public void clickRemoveFromFavorite(){//issue method, need modify
         String fileName = "";
         for (WebElement eachFile : allFilesList) {
@@ -159,14 +163,20 @@ public class FilesPage {
         System.out.println("Removed file name: "+removedFileName);
     }
 
+     */
+
     @FindBy(xpath = "//a[.='Favorites']")
     WebElement favoriteTab;
 
-
+/*
     public void clickFavoriteTab() {
         favoriteTab.click();
     }
 
+
+ */
+
+    /*
     public boolean checkIsSameFileInFavoriteList() {
 
         List<String> fileNameList = new ArrayList<>();
@@ -179,6 +189,8 @@ public class FilesPage {
     }
 
 
+
+     */
     //BELOW ARE FOR FOLDER'S FILES
     /**
      * Action button
@@ -343,16 +355,16 @@ public class FilesPage {
     public List<WebElement> allFilesUploaded;
 
 
-    public void clickSpecificActionBtnAndGetAllText(int specific, String specificActionWithFile){
+    public void clickSpecificActionBtnAndGetAllText(int specific, String specificActionWithFile) {
 
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
 
-        WebElement action2 = Driver.getDriver().findElement(By.xpath("(//a[@data-action='menu'])["+specific+"]"));
+        WebElement action2 = Driver.getDriver().findElement(By.xpath("(//a[@data-action='menu'])[" + specific + "]"));
         action2.click();
 
-        Driver.getDriver().findElement(By.xpath("//span[.='"+specificActionWithFile+"']")).click();
+        Driver.getDriver().findElement(By.xpath("//span[.='" + specificActionWithFile + "']")).click();
 
-
+    }
     /**
      * Posting comment in the comment box
      */
