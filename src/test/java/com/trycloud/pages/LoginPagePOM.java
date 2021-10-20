@@ -32,6 +32,7 @@ public class LoginPagePOM {
     }
 
     public void fillCredentials(String userName, String password){
+        Driver.getDriver().manage().window().maximize();
         this.userInput.sendKeys(userName);
         this.passInput.sendKeys(password);
     }

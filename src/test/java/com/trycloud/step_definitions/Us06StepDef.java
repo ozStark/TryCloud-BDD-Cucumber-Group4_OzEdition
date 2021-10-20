@@ -70,8 +70,12 @@ public class Us06StepDef {
     @And("Click “upload file”")
     public void clickUploadFile() {
         BrowserUtil.waitFor(1);
-        filesPage.selectFromCreateFolderBtn("Upload file");
+        //filesPage.selectFromCreateFolderBtn("Upload file");
         //filesPage.uploadFile.click();
+       WebElement upl = Driver.getDriver().findElement(By.xpath("//label[@data-action='upload']"));
+        upl.click();
+        BrowserUtil.waitFor(1);
+        upl.sendKeys("/Users/cristinatiscenco/datamodeler.log");
 
     }
 
@@ -79,9 +83,12 @@ public class Us06StepDef {
     public void uploadAFile() {
 
         BrowserUtil.waitFor(2);
-        Actions actions = new Actions(Driver.getDriver());
-        String filePath = "/Users/cristinatiscenco/datamodeler.log";
-        actions.sendKeys(filesPage.uploadFile, filePath).doubleClick();
+
+
+        //filesPage.uploadFile.sendKeys("/Users/cristinatiscenco/Downloads/All Cucumber.pages");
+       // Actions actions = new Actions(Driver.getDriver());
+       // String filePath = "/Users/cristinatiscenco/datamodeler.log";
+       // actions.sendKeys(filesPage.uploadFile, filePath).doubleClick();
         //filesPage.uploadFile.sendKeys(filePath);
         //filesPage.uploadFile.click();
         //WebElement choseFile = Driver.getDriver().findElement(By.id("file-upload"));
