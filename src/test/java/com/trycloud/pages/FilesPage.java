@@ -3,7 +3,6 @@ package com.trycloud.pages;
 import com.github.javafaker.Faker;
 import com.trycloud.utilities.BrowserUtil;
 import com.trycloud.utilities.Driver;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -12,11 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.beans.beancontext.BeanContext;
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -332,8 +326,9 @@ public class FilesPage {
     @FindBy(xpath = "//*[@id=\"controls\"]/div[2]/a")
     public WebElement plusIcon;
 
-    @FindBy(xpath ="//span[.='Upload file']")
-    public WebElement uploadBtn;
+    @FindBy(css = "#file_upload_start")
+    public WebElement hiddenFileUpload;
+
 
 
     @FindBy(xpath = "(//a[@data-action='menu'])")
