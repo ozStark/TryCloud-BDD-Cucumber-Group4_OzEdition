@@ -8,7 +8,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.beans.beancontext.BeanContext;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
@@ -20,8 +23,10 @@ public class FilesPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(xpath = "//span[normalize-space(.)='Files']/../..")
+
+    @FindBy(xpath = "//span[normalize-space(.)='Files']/..")
     public WebElement filesBtn;
+
 
     public void clickFilesBtn(){
         filesBtn.click();
@@ -131,6 +136,35 @@ public class FilesPage {
     public WebElement uploadBtn;
 
 
+    @FindBy(xpath = "(//a[@data-action='menu'])")
+    public WebElement actionButton;
+
+    @FindBy(xpath = "//span[@class='innernametext']")
+    public List<WebElement> allFilesUploaded;
+
+
+    public void clickSpecificActionBtnAndGetAllText(int specific, String specificActionWithFile){
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
+
+        WebElement action2 = Driver.getDriver().findElement(By.xpath("(//a[@data-action='menu'])["+specific+"]"));
+        action2.click();
+
+        Driver.getDriver().findElement(By.xpath("//span[.='"+specificActionWithFile+"']")).click();
+
+    }
+
+
+
+   @FindBy(xpath = "//a[.='Deleted files']")
+   public WebElement deleteFiles;
+
+   @FindBy(xpath = "(//span[@class='nametext extra-data'])[1]")
+   public WebElement lastDeletedFile;
+
+
+    @FindBy(xpath = "//span[.='Delete file']")
+    public WebElement deleteFileUnderAction;
 
 
 }
