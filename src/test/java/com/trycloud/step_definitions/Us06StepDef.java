@@ -43,13 +43,19 @@ public class Us06StepDef {
     public void click_the_icon_on_top() {
         //wait.until(ExpectedConditions.elementToBeClickable(filesPage.createNewFolderBtn));
         //filesPage.createNewFolderBtn.click();
-        BrowserUtil.waitFor(1);
-        filesPage.clickFilesBtn();
+       // BrowserUtil.waitFor(1);
+        //filesPage.clickFilesBtn();
         BrowserUtil.waitFor(3);
         filesPage.plusIcon.click();
-        BrowserUtil.waitFor(1);
-    }
 
+    }
+  
+    @When("Click “New Folder”")
+       public void click_new_folder() {
+       BrowserUtil.waitFor(2);
+       filesPage.newFolder.click();
+       }
+  
     @Then("Write a folder name")
     public void write_a_folder_name() {
         BrowserUtil.waitFor(1);
@@ -70,22 +76,25 @@ public class Us06StepDef {
     }
 
 
+
+
     @And("Click “upload file”")
     public void clickUploadFile() {
 
     }
 
+
     String addFileName;
     @Then("Upload a file")
     public void uploadFileViaRobot() throws AWTException {
-        String filePath="/Users/wangyuliang/Downloads/bug/5.png";
+        String filePath="/Users/cristinatiscenco/datamodeler.log";
 
         addFileName=filePath.substring(filePath.lastIndexOf("/")+1);
         System.out.println("addedFileName1:"+addFileName);
-
         filesPage.hiddenFileUpload.sendKeys(filePath);
 
     }
+
 
     @Then("Verify the file is displayed on the page")
     public void verifyTheFileIsDisplayedOnThePage() {

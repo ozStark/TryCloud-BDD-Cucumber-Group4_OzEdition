@@ -31,4 +31,10 @@ public class Us05StepDef {
     filesPage.clickFavoriteTab();
             assertFalse(filesPage.checkIsSameFileInFavoriteList());
     }
+
+
+
+
+
+
 }
