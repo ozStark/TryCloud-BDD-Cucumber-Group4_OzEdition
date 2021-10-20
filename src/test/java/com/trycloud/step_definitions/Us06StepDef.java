@@ -43,18 +43,18 @@ public class Us06StepDef {
     public void click_the_icon_on_top() {
         //wait.until(ExpectedConditions.elementToBeClickable(filesPage.createNewFolderBtn));
         //filesPage.createNewFolderBtn.click();
-        BrowserUtil.waitFor(1);
-        filesPage.clickFilesBtn();
+       // BrowserUtil.waitFor(1);
+        //filesPage.clickFilesBtn();
         BrowserUtil.waitFor(3);
         filesPage.plusIcon.click();
-        BrowserUtil.waitFor(1);
+
     }
   
     @When("Click “New Folder”")
        public void click_new_folder() {
        BrowserUtil.waitFor(2);
+       filesPage.newFolder.click();
 
-       filesPage.selectFromCreateFolderBtn("New folder");  
    }
 
 
@@ -78,35 +78,20 @@ public class Us06StepDef {
     }
 
 
+
+
     @And("Click “upload file”")
     public void clickUploadFile() {
         BrowserUtil.waitFor(1);
-       
-     
-        filesPage.uploadBtn.click();
 
+        filesPage.uploadBtn.click();
     }
+
+
     String addFileName;
     @Then("Upload a file")
-
-    public void uploadAFile() {
-
-        BrowserUtil.waitFor(2);
-
-
-        //filesPage.uploadFile.sendKeys("/Users/cristinatiscenco/Downloads/All Cucumber.pages");
-       // Actions actions = new Actions(Driver.getDriver());
-       // String filePath = "/Users/cristinatiscenco/datamodeler.log";
-       // actions.sendKeys(filesPage.uploadFile, filePath).doubleClick();
-        //filesPage.uploadFile.sendKeys(filePath);
-        //filesPage.uploadFile.click();
-        //WebElement choseFile = Driver.getDriver().findElement(By.id("file-upload"));
-        //choseFile.sendKeys("/Users/cristinatiscenco/datamodeler.log", Keys.ENTER);
-
-
-
     public void uploadFileViaRobot() throws AWTException {
-        String filePath="/Users/wangyuliang/Downloads/bug/5.png";
+        String filePath="/Users/cristinatiscenco/datamodeler.log";
 
         addFileName=filePath.substring(filePath.lastIndexOf("/")+1);
         System.out.println("addedFileName1:"+addFileName);
@@ -151,19 +136,8 @@ public class Us06StepDef {
         robot.keyRelease(KeyEvent.VK_ENTER);
 
     }
-//    public void uploadAFile() {
-//
-//        BrowserUtil.waitFor(2);
-//        Actions actions = new Actions(Driver.getDriver());
-//        String filePath = "/Users/cristinatiscenco/datamodeler.log";
-//        actions.sendKeys(filesPage.uploadFile, filePath).doubleClick();
-//        //filesPage.uploadFile.sendKeys(filePath);
-//        //filesPage.uploadFile.click();
-//        //WebElement choseFile = Driver.getDriver().findElement(By.id("file-upload"));
-//        //choseFile.sendKeys("/Users/cristinatiscenco/datamodeler.log", Keys.ENTER);
-//
-//
-//    }
+
+
 
     @Then("Verify the file is displayed on the page")
     public void verifyTheFileIsDisplayedOnThePage() {

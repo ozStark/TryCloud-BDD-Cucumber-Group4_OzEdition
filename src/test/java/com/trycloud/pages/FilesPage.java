@@ -27,8 +27,6 @@ public class FilesPage {
     @FindBy(xpath = "//span[normalize-space(.)='Files']/..")
     public WebElement filesBtn;
 
-    @FindBy(xpath = "//span[normalize-space(.)='Files']/../..")
-    public WebElement filesBtn;
 
     public void clickFilesBtn(){
         filesBtn.click();
