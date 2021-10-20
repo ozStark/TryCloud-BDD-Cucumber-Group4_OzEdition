@@ -1,6 +1,7 @@
 package com.trycloud.step_definitions;
 
 import com.github.javafaker.Faker;
+import com.trycloud.pages.CommonPOM;
 import com.trycloud.pages.FilesPage;
 import com.trycloud.utilities.BrowserUtil;
 import com.trycloud.utilities.Driver;
@@ -28,6 +29,7 @@ import static org.junit.Assert.assertTrue;
 public class Us06StepDef {
 
     FilesPage filesPage = new FilesPage();
+    CommonPOM commonPOM = new CommonPOM();
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
 
 
@@ -41,13 +43,7 @@ public class Us06StepDef {
 
     @When("Click the “+” icon on top")
     public void click_the_icon_on_top() {
-        //wait.until(ExpectedConditions.elementToBeClickable(filesPage.createNewFolderBtn));
-        //filesPage.createNewFolderBtn.click();
-       // BrowserUtil.waitFor(1);
-        //filesPage.clickFilesBtn();
-        BrowserUtil.waitFor(3);
-        filesPage.plusIcon.click();
-
+        commonPOM.clickModule("Files");
     }
   
     @When("Click “New Folder”")
@@ -87,7 +83,7 @@ public class Us06StepDef {
     String addFileName;
     @Then("Upload a file")
     public void uploadFileViaRobot() throws AWTException {
-        String filePath="/Users/cristinatiscenco/datamodeler.log";
+        String filePath="/Users/wangyuliang/Downloads/bug/5.png";
 
         addFileName=filePath.substring(filePath.lastIndexOf("/")+1);
         System.out.println("addedFileName1:"+addFileName);

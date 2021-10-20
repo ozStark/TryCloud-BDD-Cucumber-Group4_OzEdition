@@ -75,9 +75,7 @@ public class FilesPage {
     public WebElement youCreatedNewFolderConfirmMsg;
 
     @FindBy(xpath = "//tbody[@id='fileList']/tr")
-
     public List<WebElement> fileList;
-
 
     // make sure there is at least one file marked with Favorite
     public boolean isAtLeastOneFileAsFavorite() {
@@ -94,7 +92,8 @@ public class FilesPage {
         }
     }
 
-    List<WebElement> allFilesList;
+    @FindBy(xpath = "//tbody[@id='fileList']/tr")
+    public List<WebElement> allFilesList;
 
     public void refreshCurrentPage() {
         filesBtn.sendKeys(Keys.F5);
