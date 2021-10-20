@@ -10,7 +10,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.beans.beancontext.BeanContext;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,37 +25,48 @@ public class FilesPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+
     @FindBy(xpath = "//span[normalize-space(.)='Files']/..")
-
     public WebElement filesBtn;
-
-    //WebElement filesBtn;
 
 
     public void clickFilesBtn() {
         filesBtn.click();
+        BrowserUtil.waitFor(3);
     }
 
     @FindBy(xpath = "//tr[@data-file='Talk']//span[.='Actions']/..")  // need change to dynamic according to file's name
-    WebElement actionIcon;
+    public WebElement actionIcon;
 
-//    @FindBy(xpath = "//tr[@data-file='Talk']//span[.='Favorited']/..") //need change to dynamic according to file's name
-//    WebElement favoritedIcon;
 
     public boolean isFavoriteFile(String fileName) {
         String sXpath = "//tr[@data-file='" + fileName + "]//span[.='Favorited']/..";
         if (Driver.getDriver().findElement(By.xpath(sXpath)).getText().equals("Favorited")) {
             return true;
+
+    public boolean isFavoriteFile(String fileName){
+        boolean result= true;
+        try{
+            String sXpath="//tr[@data-file='"+fileName+"']//span[.='Favorited']";
+            Driver.getDriver().findElement(By.xpath(sXpath)).getText().equals("Favorited");
+        }catch (Exception e){
+            result=false;
+
         }
-        return false;
+        return result;
     }
 
     @FindBy(xpath = "//li[@class='action-0']")
-    WebElement addToFavorite;
+    public WebElement addToFavorite;
 
     @FindBy(xpath = "//li[@class=' action-favorite-container']")
+
     WebElement removeFromFavorite;
 
+
+
+    public WebElement removeFromFavorite;
+  
 
     @FindBy(xpath = "//span[@class='icon icon-add']")
     public WebElement createNewFolderBtn;
@@ -70,6 +87,7 @@ public class FilesPage {
     public WebElement youCreatedNewFolderConfirmMsg;
 
     @FindBy(xpath = "//tbody[@id='fileList']/tr")
+
     public List<WebElement> fileList;
 
 
@@ -86,7 +104,16 @@ public class FilesPage {
         } else {
             return false;
         }
+
+    List<WebElement> allFilesList;
+
+    public void refreshCurrentPage(){
+        filesBtn.sendKeys(Keys.F5);
+
     }
+
+    @FindBy(xpath = "//div[@id='app-content-favorites']//tbody[@id='fileList']/tr")
+    List<WebElement> allFavoriteFilesList;
 
 
     @FindBy(xpath = "//span[.='Upload file']")
@@ -105,17 +132,36 @@ public class FilesPage {
             String fileName = eachFile.getText();
             if (isFavoriteFile(fileName)) {
                 String fileNameXpath = "//tr[@data-file='" + fileName + "']//span[.='Actions']/..";
+
+    public List<String> allFilesList1(){
+        List<String> list= new ArrayList<>();
+        for (WebElement each : allFilesList) {
+           list.add( each.getAttribute("data-file"));
+        }
+        return list;
+    }
+
+    public static String removedFileName;
+    public void clickRemoveFromFavorite(){//issue method, need modify
+        String fileName = "";
+        for (WebElement eachFile : allFilesList) {
+            BrowserUtil.waitFor(3);
+            fileName = eachFile.getAttribute("data-file");
+            if (isFavoriteFile(fileName)){
+                removedFileName=fileName;
+                String fileNameXpath="//tr[@data-file='"+fileName+"']//span[.='Actions']/..";
+
                 Driver.getDriver().findElement(By.xpath(fileNameXpath)).click();
                 removeFromFavorite.click();
                 break;
             }
-
         }
-        return false;
+        System.out.println("Removed file name: "+removedFileName);
     }
 
     @FindBy(xpath = "//a[.='Favorites']")
     WebElement favoriteTab;
+
 
     public void clickFavoriteTab() {
         favoriteTab.click();
@@ -263,6 +309,50 @@ public class FilesPage {
         }
     }
 
+    public void clickFavoriteTab(){
+        BrowserUtil.waitFor(3);
+        favoriteTab.click();
+    }
+
+    public boolean checkIsSameFileInFavoriteList(){
+        favoriteList();
+        BrowserUtil.waitFor(3);
+        System.out.println("Favorite list: "+favoriteList());
+        return favoriteList().contains(removedFileName);
+    }
+
+    public List<String> favoriteList(){
+         List<String> favoriteFileNameList = new ArrayList<>();
+        for (WebElement each : allFavoriteFilesList) {
+            favoriteFileNameList.add( each.getAttribute("data-file"));
+        }
+        return favoriteFileNameList;
+    }
+
+    @FindBy(xpath = "//*[@id=\"controls\"]/div[2]/a")
+    public WebElement plusIcon;
+
+    @FindBy(xpath ="//span[.='Upload file']")
+    public WebElement uploadBtn;
+
+
+    @FindBy(xpath = "(//a[@data-action='menu'])")
+    public WebElement actionButton;
+
+    @FindBy(xpath = "//span[@class='innernametext']")
+    public List<WebElement> allFilesUploaded;
+
+
+    public void clickSpecificActionBtnAndGetAllText(int specific, String specificActionWithFile){
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
+
+        WebElement action2 = Driver.getDriver().findElement(By.xpath("(//a[@data-action='menu'])["+specific+"]"));
+        action2.click();
+
+        Driver.getDriver().findElement(By.xpath("//span[.='"+specificActionWithFile+"']")).click();
+
+
     /**
      * Posting comment in the comment box
      */
@@ -287,5 +377,16 @@ public class FilesPage {
         }
         return isDisplayed;
     }
+
+   @FindBy(xpath = "//a[.='Deleted files']")
+   public WebElement deleteFiles;
+
+   @FindBy(xpath = "(//span[@class='nametext extra-data'])[1]")
+   public WebElement lastDeletedFile;
+
+
+    @FindBy(xpath = "//span[.='Delete file']")
+    public WebElement deleteFileUnderAction;
+
 
 }

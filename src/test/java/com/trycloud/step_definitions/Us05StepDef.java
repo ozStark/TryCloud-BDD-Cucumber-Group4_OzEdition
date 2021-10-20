@@ -6,8 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class Us05StepDef {
     FilesPage filesPage = new FilesPage();
@@ -30,10 +29,8 @@ public class Us05StepDef {
     @Then("Verify that the file is removed from Favorites sub-module’s table.")
     public void verify_that_the_file_is_removed_from_favorites_sub_module_s_table() {
     filesPage.clickFavoriteTab();
-    assertFalse(filesPage.checkIsSameFileInFavoriteList());
+            assertFalse(filesPage.checkIsSameFileInFavoriteList());
     }
-
-
 
 
 
