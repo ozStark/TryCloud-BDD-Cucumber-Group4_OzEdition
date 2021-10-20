@@ -33,12 +33,7 @@ public class FilesPage {
     public WebElement actionIcon;
 
 
-    //    public boolean isFavoriteFile(String fileName) {
-//        String sXpath = "//tr[@data-file='" + fileName + "]//span[.='Favorited']/..";
-//        if (Driver.getDriver().findElement(By.xpath(sXpath)).getText().equals("Favorited")) {
-//            return true;
-//        }
-//    }
+
     public boolean isFavoriteFile(String fileName) {
         boolean result = true;
         try {
@@ -139,7 +134,7 @@ public class FilesPage {
     }
 
     public static String removedFileName;
-    /*
+
     public void clickRemoveFromFavorite(){//issue method, need modify
         String fileName = "";
         for (WebElement eachFile : allFilesList) {
@@ -157,7 +152,7 @@ public class FilesPage {
         System.out.println("Removed file name: "+removedFileName);
     }
 
-     */
+
 
     @FindBy(xpath = "//a[.='Favorites']")
     WebElement favoriteTab;
