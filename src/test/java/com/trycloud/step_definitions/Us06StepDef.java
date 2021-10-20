@@ -17,6 +17,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.sql.rowset.BaseRowSet;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.io.File;
+
+import static org.junit.Assert.assertTrue;
 
 
 public class Us06StepDef {
@@ -35,16 +41,21 @@ public class Us06StepDef {
 
     @When("Click the “+” icon on top")
     public void click_the_icon_on_top() {
-        wait.until(ExpectedConditions.elementToBeClickable(filesPage.createNewFolderBtn));
-        filesPage.createNewFolderBtn.click();
+        //wait.until(ExpectedConditions.elementToBeClickable(filesPage.createNewFolderBtn));
+        //filesPage.createNewFolderBtn.click();
+        BrowserUtil.waitFor(1);
+        filesPage.clickFilesBtn();
+        BrowserUtil.waitFor(3);
+        filesPage.plusIcon.click();
+        BrowserUtil.waitFor(1);
     }
-
+  
     @When("Click “New Folder”")
-    public void click_new_folder() {
-        BrowserUtil.waitFor(2);
+       public void click_new_folder() {
+       BrowserUtil.waitFor(2);
 
-        filesPage.selectFromCreateFolderBtn("New folder");
-    }
+       filesPage.selectFromCreateFolderBtn("New folder");  
+   }
 
 
     @Then("Write a folder name")
@@ -63,23 +74,21 @@ public class Us06StepDef {
     @Then("Verify the folder is displayed on the page")
     public void verify_the_folder_is_displayed_on_the_page() {
         BrowserUtil.waitFor(2);
-        Assert.assertTrue(filesPage.youCreatedNewFolderConfirmMsg.isDisplayed());
+        assertTrue(filesPage.youCreatedNewFolderConfirmMsg.isDisplayed());
     }
 
 
     @And("Click “upload file”")
     public void clickUploadFile() {
         BrowserUtil.waitFor(1);
-        //filesPage.selectFromCreateFolderBtn("Upload file");
-        //filesPage.uploadFile.click();
-       WebElement upl = Driver.getDriver().findElement(By.xpath("//label[@data-action='upload']"));
-        upl.click();
-        BrowserUtil.waitFor(1);
-        upl.sendKeys("/Users/cristinatiscenco/datamodeler.log");
+       
+     
+        filesPage.uploadBtn.click();
 
     }
-
+    String addFileName;
     @Then("Upload a file")
+
     public void uploadAFile() {
 
         BrowserUtil.waitFor(2);
@@ -95,12 +104,74 @@ public class Us06StepDef {
         //choseFile.sendKeys("/Users/cristinatiscenco/datamodeler.log", Keys.ENTER);
 
 
+
+    public void uploadFileViaRobot() throws AWTException {
+        String filePath="/Users/wangyuliang/Downloads/bug/5.png";
+
+        addFileName=filePath.substring(filePath.lastIndexOf("/")+1);
+        System.out.println("addedFileName1:"+addFileName);
+
+        File file = new File(filePath);
+        StringSelection stringSelection= new StringSelection(file.getAbsolutePath());
+        //Copy to clipboard
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+        Robot robot = new Robot();
+        // Cmd + Tab is needed since it launches a Java app and the browser looses focus
+        robot.keyPress(KeyEvent.VK_META);
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyRelease(KeyEvent.VK_META);
+        robot.keyRelease(KeyEvent.VK_TAB);
+
+        robot.delay(500);
+
+        //Open Goto window
+        robot.keyPress(KeyEvent.VK_META);
+        robot.keyPress(KeyEvent.VK_SHIFT);
+        robot.keyPress(KeyEvent.VK_G);
+        robot.keyRelease(KeyEvent.VK_META);
+        robot.keyRelease(KeyEvent.VK_SHIFT);
+        robot.keyRelease(KeyEvent.VK_G);
+
+        //delete previous path
+        robot.keyPress(KeyEvent.VK_DELETE);
+        robot.keyRelease(KeyEvent.VK_DELETE);
+
+        //Paste the clipboard value
+        robot.keyPress(KeyEvent.VK_META);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.delay(1000);
+        robot.keyRelease(KeyEvent.VK_META);
+        robot.keyRelease(KeyEvent.VK_V);
+
+        //Press Enter key to close the Goto window and Upload window
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        robot.delay(1000);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
     }
+//    public void uploadAFile() {
+//
+//        BrowserUtil.waitFor(2);
+//        Actions actions = new Actions(Driver.getDriver());
+//        String filePath = "/Users/cristinatiscenco/datamodeler.log";
+//        actions.sendKeys(filesPage.uploadFile, filePath).doubleClick();
+//        //filesPage.uploadFile.sendKeys(filePath);
+//        //filesPage.uploadFile.click();
+//        //WebElement choseFile = Driver.getDriver().findElement(By.id("file-upload"));
+//        //choseFile.sendKeys("/Users/cristinatiscenco/datamodeler.log", Keys.ENTER);
+//
+//
+//    }
 
     @Then("Verify the file is displayed on the page")
     public void verifyTheFileIsDisplayedOnThePage() {
-
-
-
+        BrowserUtil.waitFor(2);
+        filesPage.refreshCurrentPage();
+        BrowserUtil.waitFor(2);
+        System.out.println("addedFileName2 :"+addFileName);
+        System.out.println("filesListOnThePage :"+filesPage.allFilesList1());
+        assertTrue( filesPage.allFilesList1().contains(addFileName));
     }
 }
