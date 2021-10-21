@@ -48,6 +48,9 @@ public class ContactModulePage {
     @FindBy(css = "div:nth-of-type(8) > .property__value")
     private WebElement country;
 
+    @FindBy(xpath = "//div[@class='app-content-details']")
+    private WebElement clickOutSie;
+
     public ContactModulePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
@@ -71,10 +74,11 @@ public class ContactModulePage {
 
     public void contactInfo(){
 
-        companyNameField.sendKeys("Apple Inc");
-
         Faker faker = new Faker();
 
+        companyNameField.sendKeys("Apple Inc");
+
+        BrowserUtil.waitFor(1);
         title.sendKeys(faker.company().name());
         BrowserUtil.waitFor(1);
         phone.sendKeys(faker.phoneNumber().cellPhone());
@@ -94,6 +98,8 @@ public class ContactModulePage {
         state.sendKeys(faker.address().state());
         BrowserUtil.waitFor(1);
         country.sendKeys(faker.country().name());
+        BrowserUtil.waitFor(1);
+        clickOutSie.click();
 
     }
 
