@@ -99,7 +99,7 @@ public class FilesPage {
     public void clickRemoveFromFavorite(){//issue method, need modify
         String fileName = "";
         for (WebElement eachFile : fileList) {
-            BrowserUtil.waitFor(3);
+            BrowserUtil.waitForElementIsNotLocated(eachFile);
             fileName = eachFile.getAttribute("data-file");
             if (isFavoriteFile(fileName)){
                 removedFileName=fileName;
