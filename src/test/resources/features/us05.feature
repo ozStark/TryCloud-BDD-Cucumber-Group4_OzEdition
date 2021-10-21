@@ -5,13 +5,13 @@ Feature: Access files module function test
 
   Background:
     Given Login as a user
-
+  @wang
   Scenario: Verify users can remove a file from favorites.
     When Click action-icon from any file on the page
     And Click “Remove from Favorites” option
     Then Verify that the file is removed from Favorites sub-module’s table.
 #(Pre-condition: there should be at least 1 file is added to favorites table)
-  @wang
+
   Scenario: Verify users can upload a file directly to the homepage (File-Uploading)
     When Click the “+” icon on top
     And Click “upload file”
