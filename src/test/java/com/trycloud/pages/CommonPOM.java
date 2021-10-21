@@ -86,6 +86,7 @@ public class CommonPOM {
     @FindBy(xpath = "//li[starts-with(@class, 'nav-files')]")
     private WebElement allFilesFol;
 
+    //Bakhtiyar was here
     @FindBy(xpath = "//label[@for='select_all_files']")
     private WebElement allCheckbox;
 

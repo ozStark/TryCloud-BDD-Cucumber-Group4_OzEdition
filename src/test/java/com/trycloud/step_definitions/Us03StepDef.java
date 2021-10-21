@@ -43,6 +43,7 @@ public class Us03StepDef {
             String element = eachElement.getAttribute("class");
             boolean actualResult = element.contains("selected");
            assertTrue(actualResult);
+            System.out.println(actualResult);
         }
     }
 
