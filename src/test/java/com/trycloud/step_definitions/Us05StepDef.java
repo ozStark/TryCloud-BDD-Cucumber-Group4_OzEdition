@@ -1,5 +1,6 @@
 package com.trycloud.step_definitions;
 
+import com.trycloud.pages.CommonPOM;
 import com.trycloud.pages.FilesPage;
 import com.trycloud.pages.LoginPagePOM;
 import io.cucumber.java.en.Given;
@@ -10,6 +11,7 @@ import static org.junit.Assert.*;
 
 public class Us05StepDef {
     FilesPage filesPage = new FilesPage();
+    CommonPOM commonPOM= new CommonPOM();
 
     @Given("Login as a user")
     public void login_as_a_user() {
@@ -18,7 +20,7 @@ public class Us05StepDef {
 
     @When("Click action-icon from any file on the page")
     public void click_action_icon_from_any_file_on_the_page() {
-        filesPage.clickFilesBtn();
+        commonPOM.clickModule("Files");
     }
 
     @When("Click “Remove from Favorites” option")
@@ -29,7 +31,7 @@ public class Us05StepDef {
     @Then("Verify that the file is removed from Favorites sub-module’s table.")
     public void verify_that_the_file_is_removed_from_favorites_sub_module_s_table() {
     filesPage.clickFavoriteTab();
-            assertFalse(filesPage.checkIsSameFileInFavoriteList());
+    assertFalse(filesPage.checkIsSameFileInFavoriteList());
     }
 
 
