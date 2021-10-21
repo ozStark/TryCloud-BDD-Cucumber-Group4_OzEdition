@@ -86,6 +86,9 @@ public class CommonPOM {
     @FindBy(xpath = "//li[starts-with(@class, 'nav-files')]")
     private WebElement allFilesFol;
 
+    @FindBy(xpath = "//label[@for='select_all_files']")
+    private WebElement allCheckbox;
+
 
     public CommonPOM() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -99,6 +102,10 @@ public class CommonPOM {
 
     public void clickFilesBtn(){
         filesBtn.click();
+    }
+
+    public void clickAllCheckbox(){
+        allCheckbox.click();
     }
 
     public List<String> iterableModuleList() {
