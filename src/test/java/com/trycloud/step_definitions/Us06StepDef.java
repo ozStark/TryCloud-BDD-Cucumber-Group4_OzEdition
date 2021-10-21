@@ -8,22 +8,12 @@ import com.trycloud.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.junit.runner.manipulation.Ordering;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.sql.rowset.BaseRowSet;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-import java.io.File;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class Us06StepDef {
@@ -72,8 +62,6 @@ public class Us06StepDef {
     }
 
 
-
-
     @And("Click “upload file”")
     public void clickUploadFile() {
 
@@ -82,13 +70,12 @@ public class Us06StepDef {
 
     String addFileName;
     @Then("Upload a file")
-    public void uploadFileViaRobot() throws AWTException {
+    public void uploadFileViaRobot() {
         String filePath="/Users/wangyuliang/Downloads/bug/5.png";
-
         addFileName=filePath.substring(filePath.lastIndexOf("/")+1);
         System.out.println("addedFileName1:"+addFileName);
+        BrowserUtil.waitFor(2);
         filesPage.hiddenFileUpload.sendKeys(filePath);
-
     }
 
 
@@ -99,6 +86,6 @@ public class Us06StepDef {
         BrowserUtil.waitFor(2);
         System.out.println("addedFileName2 :"+addFileName);
         System.out.println("filesListOnThePage :"+filesPage.allFilesList1());
-        assertTrue( filesPage.allFilesList1().contains(addFileName));
+        assertTrue(filesPage.allFilesList1().contains(addFileName));
     }
 }
