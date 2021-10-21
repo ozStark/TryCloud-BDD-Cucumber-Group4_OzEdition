@@ -41,8 +41,8 @@ public class Us03StepDef {
         List<WebElement> checkBoxElements = Driver.getDriver().findElements(By.xpath("//tr[contains(@class, 'selected')]"));
         for (WebElement eachElement : checkBoxElements) {
             String element = eachElement.getAttribute("class");
-            boolean actual = element.contains("selected");
-           assertTrue(actual);
+            boolean actualResult = element.contains("selected");
+           assertTrue(actualResult);
         }
     }
 
