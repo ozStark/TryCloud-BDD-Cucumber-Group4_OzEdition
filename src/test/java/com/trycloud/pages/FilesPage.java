@@ -143,15 +143,17 @@ public class FilesPage {
     public List<WebElement> allFilesUploaded;
 
 
-    public void clickSpecificActionBtnAndGetAllText(int specific, String specificActionWithFile){
+    public String clickSpecificActionBtnAndGetAllText(int specific, String specificActionWithFile){
 
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),5);
 
         WebElement action2 = Driver.getDriver().findElement(By.xpath("(//a[@data-action='menu'])["+specific+"]"));
         action2.click();
+        String deletedFileName = action2.getText();
 
         Driver.getDriver().findElement(By.xpath("//span[.='"+specificActionWithFile+"']")).click();
 
+        return deletedFileName;
     }
 
 
