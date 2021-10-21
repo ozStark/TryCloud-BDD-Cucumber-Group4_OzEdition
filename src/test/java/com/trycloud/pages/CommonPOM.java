@@ -5,13 +5,21 @@ import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import com.trycloud.utilities.BrowserUtil;
 import com.trycloud.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class CommonPOM {
 
@@ -75,6 +83,9 @@ public class CommonPOM {
     @FindBy(xpath = "//div[contains(@style, 'folder.svg')]")
     public List<WebElement> foldersList;
 
+    @FindBy(xpath = "//li[starts-with(@class, 'nav-files')]")
+    private WebElement allFilesFol;
+
 
     public CommonPOM() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -83,7 +94,11 @@ public class CommonPOM {
     public void logOut() {
         this.logoutDrop.click();
         BrowserUtil.waitForVisibility(By.xpath("//li[@ data-id='logout']"), 3);
-        this.logoutBtn.click();//
+        this.logoutBtn.click();
+    }
+
+    public void clickFilesBtn(){
+        filesBtn.click();
     }
 
     public List<String> iterableModuleList() {
