@@ -32,6 +32,7 @@ public class LoginPagePOM {
     }
 
     public void fillCredentials(String userName, String password){
+        Driver.getDriver().manage().window().maximize();
         this.userInput.sendKeys(userName);
         this.passInput.sendKeys(password);
     }
@@ -40,7 +41,11 @@ public class LoginPagePOM {
         this.loginBtn.click();
     }
 
-
+    public void login(){// this method only for 1 user
+        goTo();
+        fillCredentials(ConfigReader.read("user0"),ConfigReader.read("password"));
+        clickLogin();
+    }
 
     public void isAtLoginPage(){
         String homePage = "http://qa2.trycloud.net/index.php/apps/dashboard/";

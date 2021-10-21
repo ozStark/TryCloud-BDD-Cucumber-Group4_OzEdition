@@ -27,7 +27,6 @@ import org.junit.runner.RunWith;
                 "me.jvt.cucumber.report.PrettyReports:target"  // fancy report
         } ,
 
-        tags = "@us12",
         dryRun = false
 )
 
