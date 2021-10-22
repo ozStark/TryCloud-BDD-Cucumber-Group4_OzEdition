@@ -357,6 +357,9 @@ public class FilesPage {
     @FindBy(xpath = "//span[.='Delete file']")
     public WebElement deleteFileUnderAction;
 
+    @FindBy(xpath = "//span[.='Deleted']")
+    public WebElement deletedBtn;
+
 
     public int randomNumber(int a, int b) {
         return new Faker().number().numberBetween(a, b);
@@ -377,7 +380,7 @@ public class FilesPage {
       BrowserUtil.waitFor(1);
       Driver.getDriver().findElement(By.xpath("(//span[@class='icon icon-delete'])[2]")).click();
 
-      return dynamicActionBtn;
+      return deletedFileName;
     }
 
 
