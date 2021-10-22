@@ -9,15 +9,18 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
 public class Us07StepDef {
 
     FilesPage filesPage = new FilesPage();
-    WebElement deletedFileName;
+   // WebElement deletedFileName;
 
     int random;
+    String deletedFileName;
+
     //String expectedFileName;
 
     // String deletedFileName;
@@ -37,10 +40,13 @@ public class Us07StepDef {
        // String deletedFileName = filesPage.getFileName(3);
         //String deletedFileName = filesPage.clickSpecificActionBtnAndGetAllText(3,"Delete file");
 
+          WebElement deletedFile = filesPage.test(filesPage.randomChosenFile());
+          String deletedFileName = deletedFile.getText();
+        System.out.println("deletedFileName = " + deletedFileName);
 
+        //String deletedFileName = filesPage.test(filesPage.randomChosenFile());
 
-
-     WebElement deletedFileName = filesPage.test(filesPage.randomChosenFile());
+       // System.out.println("deletedFileName = " + deletedFileName);
 
     }
 
@@ -60,8 +66,12 @@ public class Us07StepDef {
 
         //String lastDeletedFileName = filesPage.lastDeletedFile.getText();
         BrowserUtil.waitFor(2);
-
-       Assert.assertTrue(deletedFileName.isDisplayed());
+        Actions actions = new Actions(Driver.getDriver());
+        actions.doubleClick(filesPage.deletedBtn).perform();
+        BrowserUtil.waitFor(1);
+        String lastDeletedFileName = filesPage.lastDeletedFile.getText();
+        System.out.println("lastDeletedFileName = " + lastDeletedFileName);
+        // Assert.assertTrue(deletedFileName.isDisplayed());
 
 
         //Assert.assertTrue(allFilesUploadedName.contains(lastDeletedFileName));
