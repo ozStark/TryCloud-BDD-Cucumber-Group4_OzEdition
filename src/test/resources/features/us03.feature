@@ -1,8 +1,9 @@
+@test@ui
 Feature: As a user, I should be able to access to Files module.
 
   Background:
     Given user is on the login page
-@baxa
+
   Scenario Outline: Verify the page title
     When user enter valid "<username>" and "<password>"
     And user click login button

@@ -33,7 +33,6 @@ public class Us03StepDef {
     @Then("click the checkbox of the table")
     public void clickTheCheckboxOfTheTable() {
         newObj.clickAllCheckbox();
-        BrowserUtil.waitFor(3);
     }
 
     @Then("Assert all the files are selected")
