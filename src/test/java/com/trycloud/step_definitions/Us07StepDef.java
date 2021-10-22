@@ -3,6 +3,7 @@ package com.trycloud.step_definitions;
 import com.trycloud.pages.FilesPage;
 import com.trycloud.utilities.BrowserUtil;
 import com.trycloud.utilities.Driver;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -14,20 +15,32 @@ import java.util.List;
 public class Us07StepDef {
 
     FilesPage filesPage = new FilesPage();
+    WebElement deletedFileName;
 
-     String deletedFileName;
+    int random;
+    //String expectedFileName;
+
+    // String deletedFileName;
+
+
     @When("Choose “delete files” option")
     public void choose_delete_files_option() {
 
         BrowserUtil.waitFor(2);
 
        // System.out.println(BrowserUtil.getAllText(filesPage.allFilesUploaded));
-
+       // random = filesPage.randomNumber(1,filesPage.allFilesUploaded.size());
+       // expectedFileName = Driver.getDriver().findElement(By.xpath("(//span[@class='nametext'])["+random+"]/span[1]")).getText();
+        BrowserUtil.waitFor(3);
+      //  WebElement test = Driver.getDriver().findElement(By.xpath("(//span[@class='icon icon-more'])["+random+"]"));
+       // test.click();
        // String deletedFileName = filesPage.getFileName(3);
-        String deletedFileName = filesPage.clickSpecificActionBtnAndGetAllText(3,"Delete file");
-        BrowserUtil.waitFor(2);
+        //String deletedFileName = filesPage.clickSpecificActionBtnAndGetAllText(3,"Delete file");
 
 
+
+
+     WebElement deletedFileName = filesPage.test(filesPage.randomChosenFile());
 
     }
 
@@ -47,6 +60,8 @@ public class Us07StepDef {
 
         //String lastDeletedFileName = filesPage.lastDeletedFile.getText();
         BrowserUtil.waitFor(2);
+
+       Assert.assertTrue(deletedFileName.isDisplayed());
 
 
         //Assert.assertTrue(allFilesUploadedName.contains(lastDeletedFileName));

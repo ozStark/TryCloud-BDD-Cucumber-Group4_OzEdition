@@ -19,6 +19,8 @@ public class FilesPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+   // public String deletedFileName;
+
     @FindBy(xpath = "//span[normalize-space(.)='Files']/..")
     public WebElement filesBtn;
 
@@ -306,7 +308,7 @@ public class FilesPage {
     public List<WebElement> allFilesUploaded;
 
 
-
+    //click random nr from 1 to list of files.size  and after click delete
     public String clickSpecificActionBtnAndGetAllText(int specific, String specificActionWithFile) {
 
 
@@ -354,6 +356,29 @@ public class FilesPage {
 
     @FindBy(xpath = "//span[.='Delete file']")
     public WebElement deleteFileUnderAction;
+
+
+    public int randomNumber(int a, int b) {
+        return new Faker().number().numberBetween(a, b);
+    }
+
+    public int randomChosenFile(){
+        return new Faker().number().numberBetween(1,allFilesUploaded.size());
+    }
+
+    public WebElement test(int a){
+
+      // String dynamicFileName = Driver.getDriver().findElement(By.xpath("(//span[@class='nametext'])["+a+"]/span[1]")).getText();
+      WebElement dynamicActionBtn = Driver.getDriver().findElement(By.xpath("(//a[@data-action='menu'])["+a+"]"));
+      BrowserUtil.waitFor(1);
+      dynamicActionBtn.click();
+      WebElement deletedFileName = dynamicActionBtn;
+     // String deletedFileName = dynamicActionBtn.getText();
+      BrowserUtil.waitFor(1);
+      Driver.getDriver().findElement(By.xpath("(//span[@class='icon icon-delete'])[2]")).click();
+
+      return dynamicActionBtn;
+    }
 
 
 }
