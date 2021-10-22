@@ -39,7 +39,8 @@ public class FilesPage {
             Driver.getDriver().findElement(By.xpath(sXpath)).getText().equals("Favorited");
         } catch (Exception e) {
             result = false;
-
+            System.out.println("Attention: No Favorite files in the list, please add favorite file first.");
+            throw e;
         }
         return result;
     }
