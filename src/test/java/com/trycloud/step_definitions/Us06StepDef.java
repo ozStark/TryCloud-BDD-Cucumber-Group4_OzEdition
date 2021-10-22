@@ -33,7 +33,7 @@ public class Us06StepDef {
 
     @When("Click the “+” icon on top")
     public void click_the_icon_on_top() {
-        commonPOM.clickModule("Files");
+        filesPage.addNewPlusButton.click();
     }
   
     @When("Click “New Folder”")
