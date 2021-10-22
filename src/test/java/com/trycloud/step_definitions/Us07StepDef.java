@@ -18,6 +18,7 @@ public class Us07StepDef {
     WebElement deletedFileName;
 
     int random;
+
     //String expectedFileName;
 
     // String deletedFileName;
