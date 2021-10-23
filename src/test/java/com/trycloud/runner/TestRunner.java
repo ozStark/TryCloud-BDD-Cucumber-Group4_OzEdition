@@ -28,7 +28,11 @@ import org.junit.runner.RunWith;
         } ,
 
 
-        dryRun = false
+        tags = "@wang",
+        dryRun = true
+
+
+     
 )
 
 public class TestRunner {
