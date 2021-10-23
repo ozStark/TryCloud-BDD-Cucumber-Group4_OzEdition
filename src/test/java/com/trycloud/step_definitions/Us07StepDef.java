@@ -16,67 +16,45 @@ import java.util.List;
 public class Us07StepDef {
 
     FilesPage filesPage = new FilesPage();
-   // WebElement deletedFileName;
+    String expectedName;
 
-    int random;
-    String deletedFileName;
-
-    //String expectedFileName;
-
-    // String deletedFileName;
-
-
-    @When("Choose “delete files” option")
-    public void choose_delete_files_option() {
-
-        BrowserUtil.waitFor(2);
-
-       // System.out.println(BrowserUtil.getAllText(filesPage.allFilesUploaded));
-       // random = filesPage.randomNumber(1,filesPage.allFilesUploaded.size());
-       // expectedFileName = Driver.getDriver().findElement(By.xpath("(//span[@class='nametext'])["+random+"]/span[1]")).getText();
-        BrowserUtil.waitFor(3);
-      //  WebElement test = Driver.getDriver().findElement(By.xpath("(//span[@class='icon icon-more'])["+random+"]"));
-       // test.click();
-       // String deletedFileName = filesPage.getFileName(3);
-        //String deletedFileName = filesPage.clickSpecificActionBtnAndGetAllText(3,"Delete file");
-
-          WebElement deletedFile = filesPage.test(filesPage.randomChosenFile());
-          String deletedFileName = deletedFile.getText();
-        System.out.println("deletedFileName = " + deletedFileName);
-
-        //String deletedFileName = filesPage.test(filesPage.randomChosenFile());
-
-       // System.out.println("deletedFileName = " + deletedFileName);
+    @When("user click action-icon from any file on the page")
+    public void user_click_action_icon_from_any_file_on_the_page() {
+        filesPage.filesBtn.click();
+        expectedName = filesPage.chooseRandomFileInFilesPage();
 
     }
 
-    @Then("Click deleted files on the left bottom corner")
-    public void click_deleted_files_on_the_left_bottom_corner() {
+    @When("And user choose {string} option")
+    public void and_user_choose_option(String action) {
 
-        filesPage.deleteFiles.click();
+        BrowserUtil.waitFor(3);
+        filesPage.chooseAction(action);
+       // filesPage.deleteFunderAction.click();
+    }
+
+
+    @Then("Click {string} on the left bottom corner")
+    public void click_on_the_left_bottom_corner(String deleteBtn) {
         BrowserUtil.waitFor(2);
-
-
+         filesPage.chooseSubModule(deleteBtn);
+        //filesPage.deletedBtn.click();
 
     }
 
     @Then("Verify the deleted file is displayed no the page.")
     public void verify_the_deleted_file_is_displayed_no_the_page() {
-      //  List<String> allFilesUploadedName = BrowserUtil.getAllText(filesPage.allFilesUploaded);
-
-        //String lastDeletedFileName = filesPage.lastDeletedFile.getText();
-        BrowserUtil.waitFor(2);
-        Actions actions = new Actions(Driver.getDriver());
-        actions.doubleClick(filesPage.deletedBtn).perform();
-        BrowserUtil.waitFor(1);
-        String lastDeletedFileName = filesPage.lastDeletedFile.getText();
-        System.out.println("lastDeletedFileName = " + lastDeletedFileName);
-        // Assert.assertTrue(deletedFileName.isDisplayed());
-
-
-        //Assert.assertTrue(allFilesUploadedName.contains(lastDeletedFileName));
-
+        BrowserUtil.waitFor(4);
+        List<String> listNames = BrowserUtil.getElementsText2(filesPage.deletedFileNames);
+        System.out.println("listNames = " + listNames);
+        System.out.println("expectedName = " + expectedName);
+        BrowserUtil.waitFor(4);
+        Assert.assertTrue(listNames.contains(expectedName));
 
     }
+
+
+
+
 
 }

@@ -354,8 +354,8 @@ public class FilesPage {
    public WebElement lastDeletedFile;
 
 
-    @FindBy(xpath = "//span[.='Delete file']")
-    public WebElement deleteFileUnderAction;
+    @FindBy(xpath = "(//span[contains(.,'Delete f')])[2]")
+    public WebElement deleteFunderAction;
 
     @FindBy(xpath = "//span[.='Deleted']")
     public WebElement deletedBtn;
@@ -371,16 +371,50 @@ public class FilesPage {
 
     public WebElement test(int a){
 
+        WebElement dynamicFileName = Driver.getDriver().findElement(By.xpath("(//span[@class='nametext'])["+a+"]/span[1]"));
       // String dynamicFileName = Driver.getDriver().findElement(By.xpath("(//span[@class='nametext'])["+a+"]/span[1]")).getText();
       WebElement dynamicActionBtn = Driver.getDriver().findElement(By.xpath("(//a[@data-action='menu'])["+a+"]"));
       BrowserUtil.waitFor(1);
       dynamicActionBtn.click();
-      WebElement deletedFileName = dynamicActionBtn;
+      //WebElement deletedFileName = dynamicActionBtn;
      // String deletedFileName = dynamicActionBtn.getText();
       BrowserUtil.waitFor(1);
       Driver.getDriver().findElement(By.xpath("(//span[@class='icon icon-delete'])[2]")).click();
 
-      return deletedFileName;
+      return dynamicFileName;
+    }
+
+    @FindBy(xpath = "(//tbody[@id='fileList'])[12]//tr//span[@class='nametext extra-data']/span[@class='innernametext']")
+    public List<WebElement> deletedFileNames;
+
+    @FindBy(xpath = "//a[@class='action action-menu permanent']")
+    public List<WebElement> allActionsInFiles;
+
+
+    public String chooseRandomFileInFilesPage() {
+
+
+        int number = allActionsInFiles.size();
+        String expectedFileName = Driver.getDriver().findElement(By.xpath("(//span[@class='nametext'])["+number+"]/span")).getText();
+        System.out.println(expectedFileName);
+        allActionsInFiles.get(number-1).click();
+
+
+        return expectedFileName;
+
+    }
+
+
+    public void chooseAction(String action) {
+
+
+        BrowserUtil.waitFor(2);
+        Driver.getDriver().findElement(By.xpath("//li//span[contains(normalize-space(.),'"+action+"')]")).click();
+    }
+
+    public void chooseSubModule(String deleteBtn) {
+        BrowserUtil.waitFor(2);
+        Driver.getDriver().findElement(By.xpath("//ul[@class='with-icon']//a[normalize-space(.)='"+deleteBtn+"']")).click();
     }
 
 
