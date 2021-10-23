@@ -394,4 +394,7 @@ public class FilesPage {
     }
 
 
+
+    //span[text()='Add to favorites']
+
 }
