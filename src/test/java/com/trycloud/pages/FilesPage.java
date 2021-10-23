@@ -39,7 +39,8 @@ public class FilesPage {
             Driver.getDriver().findElement(By.xpath(sXpath)).getText().equals("Favorited");
         } catch (Exception e) {
             result = false;
-
+            System.out.println("Attention: No Favorite files in the list, please add favorite file first.");
+            throw e;
         }
         return result;
     }
@@ -99,20 +100,18 @@ public class FilesPage {
     public static String removedFileName;
 
     public void clickRemoveFromFavorite(){//issue method, need modify
-        String fileName = "";
         for (WebElement eachFile : fileList) {
             BrowserUtil.waitFor(3);
-            fileName = eachFile.getAttribute("data-file");
-            if (isFavoriteFile(fileName)){
-                removedFileName=fileName;
-                String fileNameXpath="//tr[@data-file='"+fileName+"']//span[.='Actions']/..";
-
+            removedFileName = eachFile.getAttribute("data-file");
+            if (isFavoriteFile(removedFileName)){
+                String fileNameXpath="//tr[@data-file='"+removedFileName+"']//span[.='Actions']/..";
                 Driver.getDriver().findElement(By.xpath(fileNameXpath)).click();
                 removeFromFavorite.click();
+                System.out.println("Removed file name: "+removedFileName);
                 break;
             }
         }
-        System.out.println("Removed file name: "+removedFileName);
+
     }
 
 
@@ -120,29 +119,6 @@ public class FilesPage {
     @FindBy(xpath = "//a[.='Favorites']")
     WebElement favoriteTab;
 
-/*
-    public void clickFavoriteTab() {
-        favoriteTab.click();
-    }
-
-
- */
-
-    /*
-    public boolean checkIsSameFileInFavoriteList() {
-
-        List<String> fileNameList = new ArrayList<>();
-        for (WebElement each : fileList) {
-            String fileNameInFavorite = each.getText();
-            fileNameList.add(fileNameInFavorite);
-        }
-        String deleteFileName = delectedElement.getText();
-        return fileNameList.contains(deleteFileName);
-    }
-
-
-
-     */
     //BELOW ARE FOR FOLDER'S FILES
     /**
      * Action button
@@ -280,7 +256,7 @@ public class FilesPage {
 
     public boolean checkIsSameFileInFavoriteList(){
         favoriteList();
-        BrowserUtil.waitFor(3);
+        BrowserUtil.waitFor(1);
         System.out.println("Favorite list: "+favoriteList());
         return favoriteList().contains(removedFileName);
     }

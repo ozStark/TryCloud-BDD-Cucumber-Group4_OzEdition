@@ -21,16 +21,15 @@ public class Us12StepDef {
         login.goTo();
 
     }
-    @Given("user provides valid credentials")
-    public void user_provides_valid_credentials() {
-        login.fillCredentials(ConfigReader.read("user0"),ConfigReader.read("password"));
+    @Given("user provides valid {string} and {string}")
+    public void user_provides_valid_credentials(String username, String password) {
+        login.fillCredentials(username,password);
         login.clickLogin();
 
     }
     @When("user clicks on Contacts module")
     public void user_clicks_on_contacts_module() {
         button.contactButton();
-
 
     }
     @Then("user verifies the page title is Contents module's title")
@@ -46,21 +45,19 @@ public class Us12StepDef {
 
     @And("user clicks on New Contact button")
     public void userClicksOnNewContactButton() {
-
+        BrowserUtil.waitFor(3);
         button.clickOnNewContactButton();
-        BrowserUtil.waitFor(2);
     }
 
     @When("user fills out the contact info like: Title, Phone, email, address, etc")
     public void user_fills_out_the_contact_info_like_title_phone_email_address_etc() {
         button.contactInfo();
-        BrowserUtil.waitFor(3);
 
     }
     @Then("user verifies the contact name is added to the contact list")
     public void user_verifies_the_contact_name_is_added_to_the_contact_list() {
         String actualResult = button.companyNameText();
-        String expectedResult = "AI\nApple Inc\napple@online.com";
+        String expectedResult = "A\nAmazon.inc\namazon@online.com";
 
         Assert.assertEquals(actualResult,expectedResult);
 
