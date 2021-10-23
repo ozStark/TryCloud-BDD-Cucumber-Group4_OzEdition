@@ -30,7 +30,7 @@ public class Us07StepDef {
 
         BrowserUtil.waitFor(3);
         filesPage.chooseAction(action);
-       // filesPage.deleteFunderAction.click();
+
     }
 
 
@@ -38,7 +38,7 @@ public class Us07StepDef {
     public void click_on_the_left_bottom_corner(String deleteBtn) {
         BrowserUtil.waitFor(2);
          filesPage.chooseSubModule(deleteBtn);
-        //filesPage.deletedBtn.click();
+
 
     }
 
