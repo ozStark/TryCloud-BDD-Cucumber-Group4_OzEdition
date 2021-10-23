@@ -23,6 +23,15 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 
 public class CommonPOM {
 
+    @FindBy(xpath = "(//span[@class='unified-search__result-content'])[3]")
+    public WebElement searchResult;
+
+    @FindBy(css = "svg[viewBox~='24']")
+    public WebElement searchIcon;
+
+    @FindBy(xpath = "(//input)[23]")
+    public WebElement searchBox;
+
     @FindBy(xpath = "//div[@class='avatardiv avatardiv-shown']")
     private WebElement logoutDrop;
 
