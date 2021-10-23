@@ -71,7 +71,7 @@ public class Us06StepDef {
     String addFileName;
     @Then("Upload a file")
     public void uploadFileViaRobot() {
-        String filePath="/Users/wangyuliang/Downloads/bug/5.png";
+        String filePath="/Users/wangyuliang/Desktop/IntelliJ Projects/Project/TryCloud-BDD-Cucumber-Group4/src/test/java/com/trycloud/pictures/1.png";
         addFileName=filePath.substring(filePath.lastIndexOf("/")+1);
         System.out.println("addedFileName1:"+addFileName);
         BrowserUtil.waitFor(2);
