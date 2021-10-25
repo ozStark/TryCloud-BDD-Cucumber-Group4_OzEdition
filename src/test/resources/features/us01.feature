@@ -1,8 +1,8 @@
-@test@ui
+@test @ui @smoke
 Feature: As a user, I should be able to login
 
-Background:
-  Given user is on the login page
+  Background:
+    Given user is on the login page
 
   Scenario Outline:
 
@@ -19,7 +19,6 @@ Background:
       | User93   | Userpass123 |
 
   Scenario: verify user login fail with invalid credentials
-
     When user enter invalid credentials
     And user click login button
     Then “Wrong username or password.” message should be displayed
