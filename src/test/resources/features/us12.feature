@@ -1,3 +1,4 @@
+@smoke
 Feature: As a user, I should be able to access to Contacts module.
 
   Background:
@@ -5,7 +6,7 @@ Feature: As a user, I should be able to access to Contacts module.
 
 
 
-  @us12
+
   Scenario Outline: AC#1 - verify users can access to Talks module
 
     And user provides valid "<username>" and "<password>"
@@ -19,7 +20,7 @@ Feature: As a user, I should be able to access to Contacts module.
       | User93   | Userpass123 |
 
 
-  @us12
+
   Scenario Outline: AC#2 - verify user can add contacts
     And user provides valid "<username>" and "<password>"
     When user clicks on Contacts module
