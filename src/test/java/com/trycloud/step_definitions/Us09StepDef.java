@@ -18,25 +18,25 @@ public class Us09StepDef {
     public void user_clicks_any_file_on_the_page() {
         CommonPOM commonPOM = new CommonPOM();
         commonPOM.clickModule("Files");
-        BrowserUtil.waitFor(2);
+        //BrowserUtil.waitFor(2);
     }
 
     @When("clicks action icon")
     public void clicks_action_icon() {
         filesPage.clickRandomActionBtn();
-        BrowserUtil.waitFor(1);
+        //BrowserUtil.waitFor(1);
     }
 
     @When("clicks {string} from the action dropdown")
     public void clicks_from_the_action_dropdown(String actionItem) {
         filesPage.selectFileAction(actionItem);
-        BrowserUtil.waitFor(2);
+        //BrowserUtil.waitFor(2);
     }
 
     @When("clicks {string} from the details menu")
     public void clicks_from_the_details_menu(String detailsModule) {
         filesPage.selectFileDetailsModule(detailsModule);
-        BrowserUtil.waitFor(2);
+        //BrowserUtil.waitFor(2);
     }
 
     @When("enters {string} in the box")

@@ -89,7 +89,7 @@ public class CommonPOM {
     @FindBy(xpath = "//span[text()='Calendar']")
     private WebElement textDeckBtn;
 
-    @FindBy(xpath = "//div[contains(@style, 'folder.svg')]")
+    @FindBy(xpath = "//div[contains(@style, 'folder')]")
     public List<WebElement> foldersList;
 
     @FindBy(xpath = "//li[starts-with(@class, 'nav-files')]")
@@ -97,6 +97,12 @@ public class CommonPOM {
 
     @FindBy(xpath = "//label[@for='select_all_files']")
     private WebElement allCheckbox;
+
+    @FindBy(xpath = "//div[contains(@style, 'text')]")
+    public List<WebElement> textFileList;
+
+    @FindBy(xpath = "//div[contains(@style, 'pdf.svg')]")
+    public List<WebElement> pdfFileList;
 
 
     public CommonPOM() {
@@ -224,6 +230,7 @@ public class CommonPOM {
 
     public void clickAnyRandomFolder() {
         int filesListSize = foldersList.size();
+        int pdfListSize = pdfFileList.size();
         Faker faker = new Faker();
         int random = faker.number().numberBetween(0,filesListSize-1);
         foldersList.get(random).click();
@@ -236,19 +243,18 @@ public class CommonPOM {
         Faker faker = new Faker();
         LoginPagePOM loginPagePOM = new LoginPagePOM();
         loginPagePOM.goTo();
-        loginPagePOM.fillCredentials("user63", "Userpass123");
+        loginPagePOM.fillCredentials("user3", "Userpass123");
         loginPagePOM.clickLogin();
         BrowserUtil.waitFor(1);
         CommonPOM commonPOM = new CommonPOM();
-        commonPOM.clickAnyRandomFolder();
-        BrowserUtil.waitFor(2);
-        FilesPage filesPage = new FilesPage();
-        filesPage.createNewTextDocument(faker.name().firstName());
-        BrowserUtil.waitFor(5);
-        filesPage.clickRandomActionBtn();
-        BrowserUtil.waitFor(2);
+
+        System.out.println("commonPOM.pdfFileList.size() = " + commonPOM.pdfFileList.size());
+        System.out.println(commonPOM.pdfFileList);
+
+
         Driver.getDriver().quit();
     }
+
 
 
 }

@@ -37,7 +37,7 @@ public class LoginPagePOM {
 
 
     public void goTo() {
-        Driver.getDriver().get(ConfigReader.read("url"));
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
     }
 
     public void fillCredentials(String userName, String password) {
@@ -52,7 +52,7 @@ public class LoginPagePOM {
 
     public void login() {// this method only for 1 user
         goTo();
-        fillCredentials(ConfigReader.read("user0"), ConfigReader.read("password"));
+        fillCredentials(ConfigReader.getProperty("user0"), ConfigReader.getProperty("password"));
         clickLogin();
     }
 

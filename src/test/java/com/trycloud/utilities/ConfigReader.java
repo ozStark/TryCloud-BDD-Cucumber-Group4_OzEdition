@@ -11,27 +11,25 @@ import java.util.Properties;
  */
 public class ConfigReader {
 
-    // declare Properties object at class level so it can be accessible in static method
-    private  static  Properties properties = new Properties();
+    private static Properties configFile;
 
-    // we want to only load the file once , so we can use static block
     static {
+
         try {
-            FileInputStream in = new FileInputStream("config.properties");
-            properties.load(in);
-            in.close();
-        } catch (IOException e) {
+            String path = "configuration.properties";
+            FileInputStream input = new FileInputStream(path);
+            configFile = new Properties();
+            configFile.load(input);
+            input.close();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
-    /**
-     * Get the value of key according to the key provided
-     * @param key the key you want to get the value from
-     * @return the value of the key
-     */
-    public static String read(String key){
-        return properties.getProperty(key) ;
+    public static String getProperty(String keyName) {
+        return configFile.getProperty(keyName);
     }
 
 }

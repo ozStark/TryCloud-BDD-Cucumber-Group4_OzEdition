@@ -38,7 +38,7 @@ public class Hooks {
         }
 
         System.out.println("THIS IS FROM @After inside hooks class");
-        Driver.closeBrowser();
+        Driver.closeDriver();
 
     }
 

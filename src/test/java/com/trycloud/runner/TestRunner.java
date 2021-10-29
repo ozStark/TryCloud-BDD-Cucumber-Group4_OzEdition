@@ -25,11 +25,11 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:target/cucumber.html" ,
                 "rerun:target/rerun.txt" ,  // store the failed scenario into rerun.txt
                 "me.jvt.cucumber.report.PrettyReports:target"  // fancy report
-        } ,
+        }
 
 
-        tags = "@wang",
-        dryRun = true
+        //,tags = "@wang"
+        ,dryRun = true
 
 
      
