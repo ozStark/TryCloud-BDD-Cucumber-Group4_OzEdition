@@ -24,7 +24,8 @@ import org.junit.runner.RunWith;
         publish = true, // it will give you public link of your local html report
         plugin = {"pretty", "html:target/cucumber.html" ,
                 "rerun:target/rerun.txt" ,  // store the failed scenario into rerun.txt
-                "me.jvt.cucumber.report.PrettyReports:target"  // fancy report
+                "me.jvt.cucumber.report.PrettyReports:target",  // fancy report
+                "json:target/cucumber.json"
         }
 
 
