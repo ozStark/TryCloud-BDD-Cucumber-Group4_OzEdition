@@ -70,12 +70,12 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>*/TestRunner.java</include>
+                        <include>**/TestRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
-
 </project>
+

@@ -1,4 +1,4 @@
-
+@smoke
 Feature: As a user, I should be able to add file to favorites
 
 Scenario Outline: user can add file to favorites
@@ -7,7 +7,7 @@ Scenario Outline: user can add file to favorites
   When user enter valid "<username>" and "<password>"
   And user click login button
   And User click Files module
-  And User click Action icon button
+  #And User click Action icon button
   And user click Add to Favorites
   Then file added to Favorites
 
