@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * A Utility class that load the keyvalue pair inside config.properties file
+ * A Utility class that load the keyvalue pair inside configuration.properties file
  * into Properties object and provide single method called
  * read to get the value out of the properties file we created.
  */
-public class ConfigReader {
+public class ConfigurationReader {
 
     private static Properties configFile;
 

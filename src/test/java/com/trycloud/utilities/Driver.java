@@ -21,7 +21,7 @@ import java.net.URL;
  * so we are creating this class with technic we learned from Singleton pattern
  */
 public class Driver {
-
+//
     static String browser;
 
     private Driver() {
@@ -32,7 +32,7 @@ public class Driver {
     public static WebDriver getDriver() {
         if (driver == null) {
             if (System.getProperty("BROWSER") == null) {
-                browser = ConfigReader.getProperty("browser");
+                browser = ConfigurationReader.getProperty("browser");
             } else {
                 browser = System.getProperty("BROWSER");
             }

@@ -3,7 +3,6 @@ package com.trycloud.step_definitions;
 import com.trycloud.pages.ContactModulePage;
 import com.trycloud.pages.LoginPagePOM;
 import com.trycloud.utilities.BrowserUtil;
-import com.trycloud.utilities.ConfigReader;
 import com.trycloud.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

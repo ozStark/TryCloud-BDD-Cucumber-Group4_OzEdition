@@ -1,19 +1,11 @@
 package com.trycloud.pages;
 
-import com.trycloud.utilities.ConfigReader;
+import com.trycloud.utilities.ConfigurationReader;
 import com.trycloud.utilities.Driver;
 import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 public class LoginPagePOM {
 
@@ -37,7 +29,7 @@ public class LoginPagePOM {
 
 
     public void goTo() {
-        Driver.getDriver().get(ConfigReader.getProperty("url"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 
     public void fillCredentials(String userName, String password) {
@@ -52,7 +44,7 @@ public class LoginPagePOM {
 
     public void login() {// this method only for 1 user
         goTo();
-        fillCredentials(ConfigReader.getProperty("user0"), ConfigReader.getProperty("password"));
+        fillCredentials(ConfigurationReader.getProperty("user0"), ConfigurationReader.getProperty("password"));
         clickLogin();
     }
 
